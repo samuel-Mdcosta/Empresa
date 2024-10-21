@@ -1,8 +1,13 @@
 package Visao;
 
+import java.util.ArrayList;
+
 import Dominio.Cliente;
 import Dominio.Fornecedor;
 import Dominio.Funcionario;
+import FakeDb.AddCliente;
+import FakeDb.AddFornecedor;
+import FakeDb.AddFuncionario;
 
 public class Pessoasvisao {
     
@@ -10,39 +15,64 @@ public class Pessoasvisao {
     }
 
     public void motrar(){
-        Cliente cl = new Cliente(1, "Samuel Costa", "costadev19@gmail.com", "(67)99300-3759", "088.789.391-02");
+        //instancia um novo objeto da classe
+        AddCliente ac = new AddCliente();
+        //puxa a tabela ja preenchida do fakedb
+        ArrayList<Cliente> listacliente = ac.getTabelaClientes();
 
-        System.out.println("Cliente:");
-        System.out.println("Codigo:" + cl.getCodigo());
-        System.out.println("CPF:" + cl.getCpf());
-        System.out.println("Email:" + cl.getEmail());
-        System.out.println("Nome:" + cl.getNome());
-        System.out.println("Telefone:" + cl.getTelefone());
+        //exibe a tabela
+        for (Cliente cliente : listacliente) {
+            System.out.println(" ");
+            System.out.println("Cliente: ");
+            System.out.println("Codigo: " + cliente.getCodigo());
+            System.out.println("CPF: " + cliente.getCpf());
+            System.out.println("Email: " + cliente.getEmail());
+            System.out.println("Nome: " + cliente.getNome());
+            System.out.println("Telefone: " + cliente.getTelefone());
+        }
 
-        System.out.println("=========================================");
+        System.out.println(" ");
+        System.out.println("=====================================");
+        System.out.println(" ");
 
-        Fornecedor fd = new Fornecedor(1, "Dallas",
-        "dallas@gmail.com", "(67)3333-3333", "Alimentos Dallas ltda,", "XX. XXX. XXX/0001-XX");
 
-        System.out.println("Fornecedor:");
-        System.out.println("Codigo:" + fd.getCodigo());
-        System.out.println("CPF:" + fd.getCnpj());
-        System.out.println("Email:" + fd.getEmail());
-        System.out.println("Nome:" + fd.getNome());
-        System.out.println("Telefone:" + fd.getTelefone());
+        //instancia um novo obheto da classe
+        AddFornecedor af = new AddFornecedor();
+        //puxa a tabela ja preenchida do fakedb
+        ArrayList<Fornecedor> listafornecedor = af.getTabelaFornecedores();
 
-        System.out.println("=========================================");
+        //exibe a tabela
+        for (Fornecedor fornecedor : listafornecedor) {
+            System.out.println(" ");
+            System.out.println("Fornecedor: ");
+            System.out.println("Codigo: " + fornecedor.getCodigo());
+            System.out.println("CNPJ: " + fornecedor.getCnpj());
+            System.out.println("Email: " + fornecedor.getEmail());
+            System.out.println("Nome: " + fornecedor.getNome());
+            System.out.println("Telefone: " + fornecedor.getTelefone());
+            System.out.println("Razao Social: " + fornecedor.getRasaosocial());
+        }
 
-        Funcionario fn = new Funcionario(1, "Heber Costa", "heber@gmail.com", "()99253-3808", "Gerente", Double.valueOf(2000));
+        System.out.println(" ");
+        System.out.println("=====================================");
+        System.out.println(" ");
 
-        System.out.println("Funcionario:");
-        System.out.println("Codigo:" + fn.getCodigo());
-        System.out.println("CPF:" + fn.getCargo());
-        System.out.println("Email:" + fn.getEmail());
-        System.out.println("Nome:" + fn.getNome());
-        System.out.println("Telefone:" + fn.getTelefone());
-        System.out.println("Salario:" + fn.getSalario());
-
+        //instancia um novo obheto da classe
+        AddFuncionario afun = new AddFuncionario();
+        //puxa a tabela ja preenchida do fakedb
+        ArrayList<Funcionario> listafuFuncionario = afun.getTabelaFuncionarios();
+        
+        //exibe a tabela
+        for (Funcionario funcionario : listafuFuncionario) {
+            System.out.println(" ");
+            System.out.println("Funcionario: ");
+            System.out.println("Codigo: " + funcionario.getCodigo());
+            System.out.println("Salario: " + funcionario.getSalario());
+            System.out.println("Email: " + funcionario.getEmail());
+            System.out.println("Nome: " + funcionario.getNome());
+            System.out.println("Telefone: " + funcionario.getTelefone());
+            System.out.println("Cargo: " + funcionario.getCargo());
+        }
     }
 
 }
