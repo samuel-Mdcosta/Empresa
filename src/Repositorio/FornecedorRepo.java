@@ -1,29 +1,26 @@
 package Repositorio;
 
-import Dominio.Cliente;
-import FakeDb.AddCliente;
+import Dominio.Fornecedor;
+import FakeDb.AddFornecedor;
 
-public class ClienteRepo extends BaseRepositorio<Cliente>{
+public class FornecedorRepo extends BaseRepositorio<Fornecedor> {
+    
+    //faz ligaçao com o fakedb
+    private AddFornecedor af;
 
-    //faz a ligaçao com o fakedb
-    private AddCliente ac;
-
-    public ClienteRepo(){
+    public FornecedorRepo(){
 
         //cria a lista
-        this.ac = new AddCliente();
+        this.af = new AddFornecedor();
         //armazena a table dentro do fonte de daods da baserepositorio
-        this.FonteDeDados = this.ac.getTabelaClientes();
+        this.FonteDeDados = this.af.getTabelaFornecedores();
     }
 
     @Override
-    public Cliente Create(Cliente instancia) {
-        //pega o ultimo do arraylist                
-        //guarda outro elemento na lista
-        //proxima chave e a chave do novo objeto que ira para o array list
+    public Fornecedor Create(Fornecedor instancia) {
         int proximaChave = this.FonteDeDados.getLast().getCodigo();
         proximaChave ++;
-        
+
         //atualiza o codigo que est na instancia
         instancia.setCodigo(proximaChave);
         this.FonteDeDados.add(instancia);
@@ -31,43 +28,43 @@ public class ClienteRepo extends BaseRepositorio<Cliente>{
     }
 
     @Override
-    public Cliente Read(int chave) {
+    public Fornecedor Read(int chave) {
         //tipo generico da lista = nome da variavel - lista que ira usar
-        for (Cliente cl : this.FonteDeDados) {
+        for (Fornecedor af : this.FonteDeDados) {
             //se o codgo da lista for igual ao da chave ele retorna cl (lista)
-            if (cl.getCodigo() == chave) {
-                return cl;
+            if (af.getCodigo() == chave) {
+                return af;
             }
         }
         return null;
     }
 
     @Override
-    public Cliente Update(Cliente instancia) {
+    public Fornecedor Update(Fornecedor instancia) {
         //acha a chave para atualizar a lista
-        Cliente cl = this.Read(instancia.getCodigo());
+        Fornecedor af = this.Read(instancia.getCodigo());
 
         //acha a lista
-        if (cl != null) {
+        if (af != null) {
             //pega o telefone que est em instancia e coloca em cl
-            cl.setTelefone(instancia.getTelefone());
-            return cl;
+            af.setTelefone(instancia.getTelefone());
+            return af;
         }else{
             return null;
         }
     }
 
     @Override
-    public Cliente Delete(int chave) {
-        Cliente cl = this.Read(chave);
-        if (cl != null) {
+    public Fornecedor Delete(int chave) {
+        Fornecedor af = this.Read(chave);
+        if (af != null) {
             //remove a instancia de cp da lista, nao esta apagando a lista
             //quando mando apagar devolve a intanica para quem pediu para caso o usuaio se arrependa
-            this.FonteDeDados.remove(cl);
-            return cl;
+            this.FonteDeDados.remove(af);
+            return af;
         }else{
             return null;
-        }
+        }    
     }
-    
+
 }

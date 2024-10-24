@@ -15,7 +15,7 @@ public abstract class BaseRepositorio<TDominio> {
     //e devolve a mesma instancia da cricacao
     public abstract TDominio Create(TDominio instancia);
 
-    ArrayList<TDominio> ReadAll(){
+    public ArrayList<TDominio> ReadAll(){
         return this.FonteDeDados;
     }
 
