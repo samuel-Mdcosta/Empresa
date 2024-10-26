@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import Dominio.Cliente;
 import Dominio.Fornecedor;
 import Dominio.Funcionario;
-import Repositorio.ClienteRepo;
-import Repositorio.FornecedorRepo;
-import Repositorio.FuncionarioRepo;
+import Servico.ClienteServico;
+import Servico.FornecedorServico;
+import Servico.FuncionarioServico;
 
 public class Pessoasvisao {
     
@@ -20,8 +20,11 @@ public class Pessoasvisao {
         //puxa a tabela ja preenchida do fakedb
         //ArrayList<Cliente> listacliente = ac.getTabelaClientes();
 
-        ClienteRepo repo = new ClienteRepo();
-        ArrayList<Cliente> listacliente = repo.ReadAll();
+        //ClienteRepo repo = new ClienteRepo();
+        //ArrayList<Cliente> listacliente = repo.ReadAll();
+
+        ClienteServico clsrv = new ClienteServico();
+        ArrayList<Cliente> listacliente = clsrv.LerTodos();
 
         //exibe a tabela
         for (Cliente cliente : listacliente) {
@@ -34,9 +37,12 @@ public class Pessoasvisao {
 
 
         //instancia um novo obheto da classe
-        FornecedorRepo forrepo = new FornecedorRepo();
+        //FornecedorRepo forrepo = new FornecedorRepo();
         //puxa a tabela ja preenchida do fakedb
-        ArrayList<Fornecedor> listafornecedor = forrepo.ReadAll();
+        //ArrayList<Fornecedor> listafornecedor = forrepo.ReadAll();
+
+        FornecedorServico fornsrv = new FornecedorServico();
+        ArrayList<Fornecedor> listafornecedor = fornsrv.LerTodos();
 
         //exibe a tabela
         for (Fornecedor fornecedor : listafornecedor) {
@@ -48,9 +54,12 @@ public class Pessoasvisao {
         System.out.println(" ");
 
         //instancia um novo obheto da classe
-        FuncionarioRepo afun = new FuncionarioRepo();
+        //FuncionarioRepo afun = new FuncionarioRepo();
         //puxa a tabela ja preenchida do fakedb
-        ArrayList<Funcionario> listafuFuncionario = afun.ReadAll();
+        //ArrayList<Funcionario> listafuFuncionario = afun.ReadAll();
+
+        FuncionarioServico funsrv = new FuncionarioServico();
+        ArrayList<Funcionario> listafuFuncionario = funsrv.LerTodos();
         
         //exibe a tabela
         for (Funcionario funcionario : listafuFuncionario) {
